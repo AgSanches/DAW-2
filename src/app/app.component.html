@@ -1,7 +1,7 @@
 <div class="card border-light">
   <div class="card-title mt-3 mb-0">
     <div>
-      <h2 class="text-capitalize text-center">Lista de {{model.user}}</h2>
+      <h2 class="text-capitalize text-center">Lista de {{model.user}} <span class="badge badge-info"> {{completeTask()}} </span> </h2>
     </div>
   </div>
   <div class="card-body">
@@ -20,11 +20,13 @@
       </tr>
       </thead>
       <tbody>
-        <tr class="row" *ngFor="let item of model.items">
+        <tr class="row" *ngFor="let item of model.items" [class.bg-success]="item.done">
           <td class="col-6">{{item.action}}</td>
-          <td class="col-3"> {{item.done}}</td>
           <td class="col-3">
-            <input type="checkbox" [(ngModel)]="item.done">
+            {{item.done ? "Finalizada":"No finalizada"}}
+          </td>
+          <td class="col-3">
+            <input type="checkbox" [(ngModel)]="item.done" (change)="completeTask(item)">
           </td>
         </tr>
       </tbody>

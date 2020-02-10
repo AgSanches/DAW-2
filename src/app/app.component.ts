@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent{
   title = 'Todo List';
+
   model = {
     user: "Daw",
     items: [
@@ -23,4 +24,14 @@ export class AppComponent {
       },
     ]
   };
+
+  completeTask () {
+    let completeTaskCount = 0 ;
+    this.model.items.forEach(item => {
+      if(item.done){
+        completeTaskCount += 1;
+      }
+    })
+    return completeTaskCount;
+  }
 }
