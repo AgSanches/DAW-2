@@ -13,14 +13,14 @@ export class AppComponent{
     user: "Daw",
     items: [
       {
-        action:"Estudiar daw", done: false
+        id: 0, action:"Estudiar daw", done: false
       } , {
-        action:"Estudiar 2", done: true
+        id: 1, action:"Estudiar 2", done: true
       } , {
-        action:"Estudiar 3", done: false
+        id: 2, action:"Estudiar 3", done: false
       },
       {
-        action:"Estudiar 4", done: false
+        id: 3, action:"Estudiar 4", done: false
       },
     ]
   };
@@ -28,10 +28,12 @@ export class AppComponent{
   completeTask () {
     let completeTaskCount = 0 ;
     this.model.items.forEach(item => {
-      if(item.done){
-        completeTaskCount += 1;
-      }
-    })
+      item.done ? completeTaskCount++:'';
+    });
     return completeTaskCount;
+  }
+
+  addItem (action){
+    this.model.items.push({action: action.value, done: false, id:5})
   }
 }
