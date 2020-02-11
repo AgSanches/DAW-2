@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {min} from 'rxjs/operators';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-prioridad',
@@ -8,22 +7,29 @@ import {min} from 'rxjs/operators';
 })
 export class PrioridadComponent implements OnInit {
 
-  @Input() item: any;
+  @Input() prioridad: number;
+  @Output() newPrioridadEmitter = new EventEmitter();
   MAXPRIORIDAD:number = 10;
   MINPRIORIDAD:number = 0;
 
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
 
   }
 
   addPrioridad(){
-    this.item.prioridad = Math.min(this.MAXPRIORIDAD, ++this.item.prioridad);
+    this.prioridad = Math.min(this.MAXPRIORIDAD, ++this.prioridad);
+    this.newPrioridadEmitter.emit(this.prioridad);
   }
 
   decreasePrioridad(){
-    this.item.prioridad = Math.max(this.MINPRIORIDAD, --this.item.prioridad);
+    this.prioridad = Math.max(this.MINPRIORIDAD, --this.prioridad);
+    this.newPrioridadEmitter.emit(this.prioridad);
   }
+
+
 }

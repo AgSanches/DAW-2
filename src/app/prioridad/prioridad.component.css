@@ -4,7 +4,7 @@
 }
 
 .resaltada {
-  color: red;
+  color: #dc3545 !important;
 }
 
 .fueralimites {
@@ -12,7 +12,7 @@
 }
 
 .oi {
-  color: gold;
+  color: #007bff;
 }
 .oi:hover {
   cursor: pointer;

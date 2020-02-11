@@ -20,6 +20,9 @@
       <thead>
       <tr class="row">
         <th class="col">
+          Número
+        </th>
+        <th class="col" (mouseenter)="setSortByName()">
           Tarea
         </th>
         <th class="col">
@@ -28,7 +31,7 @@
         <th class="col">
           Cambiar Estado
         </th>
-        <th class="col">
+        <th class="col" (mouseenter)="setSortByPrioridad()">
           Gestionar prioridad
         </th>
         <th class="col">
@@ -38,8 +41,9 @@
       </thead>
       <tbody>
         <tr class="row"
-            *ngFor="let item of sortArray()"
+            *ngFor="let pos = index; let item of sortArray()"
             [class.bg-success]="item.done">
+          <td class="col">{{pos}}</td>
           <td class="col">{{item.action}}</td>
           <td class="col">
             {{item.done ? "Finalizada":"No finalizada"}}
@@ -48,7 +52,10 @@
             <input type="checkbox" [(ngModel)]="item.done">
           </td>
           <td class="col">
-            <app-prioridad [item]="item"></app-prioridad>
+            <app-prioridad
+              [prioridad]="item.prioridad"
+              (newPrioridadEmitter)="changePriority($event, item.id)"
+            ></app-prioridad>
           </td>
           <td class="col">
             <button class="btn btn-danger" (click)="deleteTask(item.id)">Eliminar</button>
