@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
+import { PrioridadComponent } from './prioridad/prioridad.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrioridadComponent
   ],
   imports: [
     BrowserModule,

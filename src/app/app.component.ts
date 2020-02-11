@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,14 @@ export class AppComponent{
     user: "Daw",
     items: [
       {
-        id: 0, action:"Estudiar daw", done: false
+        id: 0, action:"Estudiar daw", done: false, prioridad: 0
       } , {
-        id: 1, action:"Estudiar 2", done: true
+        id: 1, action:"Estudiar daw", done: true,  prioridad: 0
       } , {
-        id: 2, action:"Estudiar 3", done: false
+        id: 2, action:"Estudiar daw", done: false, prioridad: 0
       },
       {
-        id: 3, action:"Estudiar 4", done: false
+        id: 3, action:"Estudiar daw", done: false, prioridad: 0
       },
     ]
   };
@@ -34,6 +35,17 @@ export class AppComponent{
   }
 
   addItem (action){
-    this.model.items.push({action: action.value, done: false, id:5})
+    this.model.items.push({action: action.value, done: false, id: uuid.v4(), prioridad: 0});
   }
+
+  deleteTask(id: number) {
+    this.model.items = this.model.items.filter( item => {
+      return item.id != id;
+    })
+  }
+
+  sortArray(){
+    return this.model.items.sort( (a, b) => (b.prioridad - a.prioridad));
+  }
+
 }

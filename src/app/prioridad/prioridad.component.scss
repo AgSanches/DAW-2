@@ -1,0 +1,19 @@
+.prioridad {
+  font-size: 0.9em;
+  line-height: 0.7;
+}
+
+.resaltada {
+  color: red;
+}
+
+.fueralimites {
+  pointer-events: none;
+}
+
+.oi {
+  color: gold;
+  &:hover{
+    cursor: pointer;
+  }
+}
