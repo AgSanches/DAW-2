@@ -11,4 +11,15 @@ th:hover {
   background-color: #ae8319;
 }
 
+.iconStyle {
+  cursor: pointer;
+}
+.iconStyle:hover {
+  color: red;
+}
+
+.iconActive {
+  color: red;
+}
+
 /*# sourceMappingURL=app.component.css.map */

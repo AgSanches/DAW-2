@@ -16,14 +16,16 @@
       </div>
     </div>
 
-    <table class="table table-striped table-hover table-sm" *ngIf="model.items.length">
+    <table class="table table-striped table-hover table-sm" *ngIf="model.items.length; else vacio">
       <thead>
       <tr class="row">
         <th class="col">
           Número
         </th>
-        <th class="col" (mouseenter)="setSortByName()">
+        <th class="col">
           Tarea
+          <span class="oi oi-chevron-top iconStyle" [class.iconActive]="sortByName && !ascendent" (click)="sortArrayByName(false)" ></span>
+          <span class="oi oi-chevron-bottom iconStyle" [class.iconActive]="sortByName && ascendent" (click)="sortArrayByName()"></span>
         </th>
         <th class="col">
           ¿Finalizada?
@@ -31,8 +33,10 @@
         <th class="col">
           Cambiar Estado
         </th>
-        <th class="col" (mouseenter)="setSortByPrioridad()">
+        <th class="col">
           Gestionar prioridad
+          <span class="oi oi-chevron-top iconStyle" [class.iconActive]="!sortByName && !ascendent" (click)="sortArrayByPrioridad(false)"></span>
+          <span class="oi oi-chevron-bottom iconStyle" [class.iconActive]="!sortByName && ascendent" (click)="sortArrayByPrioridad()"></span>
         </th>
         <th class="col">
           Borrar tarea
@@ -41,7 +45,7 @@
       </thead>
       <tbody>
         <tr class="row"
-            *ngFor="let pos = index; let item of sortArray()"
+            *ngFor="let pos = index; let item of model.items"
             [class.bg-success]="item.done">
           <td class="col">{{pos}}</td>
           <td class="col">{{item.action}}</td>
@@ -58,11 +62,17 @@
             ></app-prioridad>
           </td>
           <td class="col">
-            <button class="btn btn-danger" (click)="deleteTask(item.id)">Eliminar</button>
+            <span class="oi oi-delete iconStyle" title="Eliminar tarea" aria-hidden="true" (click)="deleteTask(item.id)"></span>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <ng-template #vacio>
+      <div class="container-fluid bg-primary text-white py-2">
+        No tiene ninguna tarea, pruebe a crear una.
+      </div>
+    </ng-template>
   </div>
 </div>
 
