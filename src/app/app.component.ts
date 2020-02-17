@@ -67,6 +67,11 @@ export class AppComponent{
 
   addItem (action){
     this.model.items.push({action: action.value, done: false, id: uuid.v4(), prioridad: 0});
+    if(this.sortByName){
+      this.sortArrayByName(this.ascendent);
+    }else {
+      this.sortArrayByPrioridad(this.ascendent);
+    }
   }
 
   deleteTask(id: number) {
