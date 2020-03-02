@@ -5,12 +5,18 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { PrioridadComponent } from './prioridad/prioridad.component';
 import { FiltroDonePipe } from './filtro-done.pipe';
+import { CallbackHellComponent } from './callback-hell/callback-hell.component';
+import { PhotoFlickComponent } from './photo-flick/photo-flick.component';
+import { ReactiveComponent } from './reactive/reactive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrioridadComponent,
-    FiltroDonePipe
+    FiltroDonePipe,
+    CallbackHellComponent,
+    PhotoFlickComponent,
+    ReactiveComponent,
   ],
   imports: [
     BrowserModule,

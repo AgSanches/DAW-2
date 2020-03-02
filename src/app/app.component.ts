@@ -14,10 +14,10 @@ export class AppComponent{
   model = {
     user: "Usuario1",
     items: [
-      { id: 0, action:"a1", done: false, prioridad: 1 },
-      { id: 1, action:"b", done: true,  prioridad: 2 },
-      { id: 2, action:"Estudiar daw", done: false, prioridad: 3 },
-      { id: 3, action:"Estudiar daw", done: true, prioridad: 4 },
+      { id: 0, action:"Hacer los deberes", done: false, prioridad: 1 },
+      { id: 1, action:"Ver Netflix", done: true,  prioridad: 2 },
+      { id: 2, action:"Estudiar daw2", done: false, prioridad: 3 },
+      { id: 3, action:"Estudiar daw1", done: true, prioridad: 4 },
     ]
   };
 
@@ -91,5 +91,8 @@ export class AppComponent{
   changePriority($event: any, id: number) {
     const index = this.model.items.findIndex(item => item.id == id, id)
     this.model.items[index].prioridad = $event;
+    if(!this.sortByName){
+      this.sortArrayByPrioridad(this.ascendent);
+    }
   }
 }
