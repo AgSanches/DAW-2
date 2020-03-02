@@ -8,6 +8,8 @@ import { FiltroDonePipe } from './filtro-done.pipe';
 import { CallbackHellComponent } from './callback-hell/callback-hell.component';
 import { PhotoFlickComponent } from './photo-flick/photo-flick.component';
 import { ReactiveComponent } from './reactive/reactive.component';
+import {TodoService} from './todo.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,12 @@ import { ReactiveComponent } from './reactive/reactive.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TodoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

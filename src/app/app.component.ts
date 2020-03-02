@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as uuid from 'uuid';
+import {Task} from './model/task';
+import {TodoService} from './todo.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,22 +10,29 @@ import * as uuid from 'uuid';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent{
+export class AppComponent implements OnDestroy{
   title = 'Todo List';
+
   ascendent: boolean;
+
   sortByName:boolean;
+
   model = {
-    user: "Usuario1",
-    items: [
-      { id: 0, action:"Hacer los deberes", done: false, prioridad: 1 },
-      { id: 1, action:"Ver Netflix", done: true,  prioridad: 2 },
-      { id: 2, action:"Estudiar daw2", done: false, prioridad: 3 },
-      { id: 3, action:"Estudiar daw1", done: true, prioridad: 4 },
-    ]
+    user:   "Usuario1",
+    items: []
   };
 
-  constructor() {
-    this.sortArrayByName();
+  private subscription: Subscription;
+
+  constructor(private todoService:TodoService) {
+    this.subscription = this.todoService.getItems().subscribe((items) => {
+      this.model.items = items;
+      this.sortArrayByName();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   /**
