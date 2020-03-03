@@ -1,1 +1,4 @@
-<img src="{{item.media.m}}" alt="" class="w-100 d-block mx-auto" style="max-height: 250px; max-width: 250px;">
+<div class="photo-flick mx-auto" [style.backgroundImage]="'url('+ item.media.m +')'">
+  <small class="title">{{item.title | slice:0:10}}... <a href="{{item.link}}" target="_blank">Accede</a></small>
+  <small class="author">Autor: {{item.author}}</small>
+</div>

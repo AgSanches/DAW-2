@@ -15,6 +15,7 @@ export class ReactiveComponent implements OnInit, OnDestroy {
   private keyups: any;
   private flickApi: string;
   private subscription: Subscription;
+  flickData: any;
 
   constructor() {
     this.flickApi = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?"
@@ -34,9 +35,11 @@ export class ReactiveComponent implements OnInit, OnDestroy {
 
     this.subscription = this.keyups.subscribe(
       (data:any) => { //When we received the data
-          console.log(data);
+          this.flickData = data.items;
+          console.log(data.items);
         },
         (error:any) => { //Error
+          this.flickData = [];
           console.log("Error!");
         }, () => {  // Task finished
           console.log("Finalizado!");
@@ -46,5 +49,6 @@ export class ReactiveComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.flickData = [];
   }
 }

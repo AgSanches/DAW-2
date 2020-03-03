@@ -1,3 +1,27 @@
-
+.photo-flick {
+  margin-bottom: 1em;
+  border: 2px solid #484778;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  transition: 1s;
+  position: relative;
+  height: 20em;
+  width: 18em;
+}
+.photo-flick small {
+  padding: 0.5em 0.1em;
+  background-color: #484778;
+  color: white;
+}
+.photo-flick .author {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.photo-flick:hover {
+  transform: scale(1.5);
+  z-index: 1;
+}
 
 /*# sourceMappingURL=photo-flick.component.css.map */
