@@ -10,6 +10,7 @@ import { PhotoFlickComponent } from './photo-flick/photo-flick.component';
 import { ReactiveComponent } from './reactive/reactive.component';
 import {TodoService} from './todo.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AngularFireModule} from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule,
+
   ],
   providers: [
     TodoService
