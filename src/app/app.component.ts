@@ -10,12 +10,14 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy, OnInit{
+
+
   title = 'Todo List';
 
   ascendent: boolean;
 
-  sortByName:boolean;
+  sortByName: boolean;
 
   model = {
     user:   "Usuario1",
@@ -25,9 +27,14 @@ export class AppComponent implements OnDestroy{
   private subscription: Subscription;
 
   constructor(private todoService:TodoService) {
-    this.subscription = this.todoService.getItems().subscribe((items) => {
-      this.model.items = items;
-      this.sortArrayByName();
+  }
+
+  ngOnInit(): void {
+    this.todoService.login().subscribe( () => {
+      this.subscription = this.todoService.getItemsFirebase().subscribe((items) => {
+        this.model.items = items;
+        this.sortArrayByName();
+      });
     });
   }
 
@@ -105,4 +112,14 @@ export class AppComponent implements OnDestroy{
       this.sortArrayByPrioridad(this.ascendent);
     }
   }
+
+  login(): void {
+    this.todoService.login();
+  }
+
+  logout(): void {
+    this.todoService.logout();
+  }
+
+
 }

@@ -68,11 +68,16 @@
       </tbody>
     </table>
 
+
     <ng-template #vacio>
       <div class="container-fluid bg-primary text-white py-2">
         No tiene ninguna tarea, pruebe a crear una.
       </div>
     </ng-template>
+
+    <button class="btn btn-danger m-2" (click)="logout()">Cerrar sesión</button>
+    <button class="btn btn-primary m-2" (click)="login()">Iniciar sesión</button>
+
 
     <app-reactive>
 
