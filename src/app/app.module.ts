@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { PrioridadComponent } from './prioridad/prioridad.component';
 import { FiltroDonePipe } from './filtro-done.pipe';
-import { CallbackHellComponent } from './callback-hell/callback-hell.component';
 import { PhotoFlickComponent } from './photo-flick/photo-flick.component';
 import { ReactiveComponent } from './reactive/reactive.component';
 import {TodoService} from './todo.service';
@@ -20,7 +19,6 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     AppComponent,
     PrioridadComponent,
     FiltroDonePipe,
-    CallbackHellComponent,
     PhotoFlickComponent,
     ReactiveComponent,
   ],

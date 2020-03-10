@@ -3,6 +3,7 @@ import * as uuid from 'uuid';
 import {Task} from './model/task';
 import {TodoService} from './todo.service';
 import {Subscription} from 'rxjs';
+import {error} from 'util';
 
 @Component({
   selector: 'app-root',
@@ -30,9 +31,10 @@ export class AppComponent implements OnDestroy, OnInit{
   }
 
   ngOnInit(): void {
-    this.todoService.login().subscribe( () => {
+    this.todoService.login().subscribe( data => {
       this.subscription = this.todoService.getItemsFirebase().subscribe((items) => {
         this.model.items = items;
+        console.log(items);
         this.sortArrayByName();
       });
     });
@@ -83,18 +85,23 @@ export class AppComponent implements OnDestroy, OnInit{
    */
 
   addItem (action){
+
     this.model.items.push({action: action.value, done: false, id: uuid.v4(), prioridad: 0});
     if(this.sortByName){
       this.sortArrayByName(this.ascendent);
     }else {
       this.sortArrayByPrioridad(this.ascendent);
     }
+
+    this.todoService.addItem({action: action.value, done: false, id: uuid.v4(), prioridad: 0})
   }
 
   deleteTask(id: number) {
     this.model.items = this.model.items.filter( item => {
-      return item.id != id;
+      return item.key != id;
     })
+
+    this.todoService.removeItem(id);
   }
 
   completeTask () {
@@ -112,14 +119,4 @@ export class AppComponent implements OnDestroy, OnInit{
       this.sortArrayByPrioridad(this.ascendent);
     }
   }
-
-  login(): void {
-    this.todoService.login();
-  }
-
-  logout(): void {
-    this.todoService.logout();
-  }
-
-
 }

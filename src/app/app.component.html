@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <table class="table table-striped table-hover table-sm" *ngIf="model.items.length; else vacio">
+    <table class="table table-striped table-hover table-sm" *ngIf="model.items && model.items.length; else vacio">
       <thead>
       <tr class="row">
         <th class="col">
@@ -62,7 +62,7 @@
             ></app-prioridad>
           </td>
           <td class="col">
-            <span class="oi oi-delete iconStyle" title="Eliminar tarea" aria-hidden="true" (click)="deleteTask(item.id)"></span>
+            <span class="oi oi-delete iconStyle" title="Eliminar tarea" aria-hidden="true" (click)="deleteTask(item.key)"></span>
           </td>
         </tr>
       </tbody>
@@ -74,9 +74,6 @@
         No tiene ninguna tarea, pruebe a crear una.
       </div>
     </ng-template>
-
-    <button class="btn btn-danger m-2" (click)="logout()">Cerrar sesión</button>
-    <button class="btn btn-primary m-2" (click)="login()">Iniciar sesión</button>
 
 
     <app-reactive>
